@@ -1,0 +1,589 @@
+<title>The Wonderful World of Music</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;600;700;800&display=swap">
+<style>
+/* Layout: one long worksheet page. Each worksheet is a color-coded sheet (header tab + lesson + writing boxes), stacked in one centered column. */
+:root{
+  --bg:#f2f6ff; --surface:#ffffff; --field:#f6f8ff; --ink:#1b1f3b; --muted:#53587a; --line:#cfd7f3;
+  --coral:#d9391f; --sky:#1c6fd1; --grape:#7a3fd6; --mint:#0b8567; --sun:#ffc531; --navy:#262a5e;
+  --f-head:'Fredoka','Trebuchet MS',system-ui,sans-serif; --f-body:'Nunito',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12142b;--surface:#1d2142;--field:#151834;--ink:#f1f2ff;--muted:#b6bbe3;--line:#3a3f73;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12142b;--surface:#1d2142;--field:#151834;--ink:#f1f2ff;--muted:#b6bbe3;--line:#3a3f73;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:16px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:1.25rem;line-height:1.6;
+  padding-block:0 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1020px;margin:0 auto;min-width:0}
+h1,h2,h3{font-family:var(--f-head);line-height:1.15;margin:0;text-wrap:balance}
+p{margin:0 0 .8em}
+b{font-weight:800}
+.es{color:var(--muted);font-size:1rem;display:block;line-height:1.35}
+
+/* hero */
+.hero{margin-top:16px;background:var(--navy);color:#fff;border-radius:36px;padding:clamp(24px,5vw,48px);display:grid;gap:18px;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(2.2rem,7vw,4rem)}
+.hero .kick{font-family:var(--f-head);font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:1rem;color:var(--sun)}
+.hero p{font-size:1.3rem;max-width:44ch;margin:0}
+.eq{display:flex;gap:6px;align-items:flex-end;height:54px}
+.eq i{display:block;width:12px;border-radius:6px;background:var(--sun);animation:bounce 1.1s ease-in-out infinite}
+.eq i:nth-child(2n){background:#ff7a5c}.eq i:nth-child(3n){background:#5ec8ff}.eq i:nth-child(4n){background:#7be3b9}
+.eq i:nth-child(1){height:30%}.eq i:nth-child(2){height:80%;animation-delay:.1s}.eq i:nth-child(3){height:55%;animation-delay:.25s}.eq i:nth-child(4){height:100%;animation-delay:.05s}.eq i:nth-child(5){height:45%;animation-delay:.3s}.eq i:nth-child(6){height:75%;animation-delay:.15s}.eq i:nth-child(7){height:35%;animation-delay:.4s}.eq i:nth-child(8){height:90%;animation-delay:.2s}
+@keyframes bounce{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1)}}
+.eq i{transform-origin:bottom}
+@media (prefers-reduced-motion:reduce){.eq i{animation:none}html{scroll-behavior:auto}}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.howto{background:rgba(255,255,255,.12);border-radius:20px;padding:14px 18px;font-size:1.1rem}
+
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;margin:14px 0 0;padding:10px 0;background:var(--bg)}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
+nav a{display:block;white-space:nowrap;text-decoration:none;color:var(--ink);font-weight:800;font-size:1.05rem;padding:8px 16px;border-radius:99px;background:var(--surface);border:2px solid var(--line)}
+nav a:hover,nav a:focus-visible{border-color:var(--ink)}
+
+/* sheets */
+.sheet{margin:34px 0 0;border-radius:32px;background:var(--surface);border:3px solid var(--c);overflow:hidden}
+.c1{--c:var(--coral);--on:#fff}.c2{--c:var(--sky);--on:#fff}.c3{--c:var(--grape);--on:#fff}.c4{--c:var(--mint);--on:#fff}.c5{--c:var(--sun);--on:#1b1f3b}.c6{--c:var(--navy);--on:#fff}
+.sh{background:var(--c);color:var(--on);padding:20px clamp(16px,3vw,30px);display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline}
+.sh .tab{font-family:var(--f-head);font-weight:600;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;border:2px solid currentColor;border-radius:99px;padding:2px 14px}
+.sh h2{font-size:clamp(1.6rem,4.6vw,2.4rem)}
+.sh .es{color:inherit;opacity:.92;flex-basis:100%;font-size:1.1rem}
+.sb{padding:clamp(14px,3vw,30px);display:grid;gap:22px;min-width:0}
+.lesson{background:color-mix(in srgb,var(--c) 11%,var(--surface));border-radius:24px;padding:clamp(14px,2.5vw,24px);min-width:0}
+.lesson h3{font-size:1.6rem;margin-bottom:10px}
+.lesson ul{margin:0 0 .8em;padding-left:1.2em}
+.lesson li{margin:.35em 0}
+.task{border:3px dashed var(--line);border-radius:24px;padding:clamp(14px,2.5vw,24px);min-width:0}
+.task h3{font-size:1.5rem;margin-bottom:4px}
+.task .instr{margin-bottom:14px}
+.formula{font-family:var(--f-head);font-weight:600;font-size:clamp(1.25rem,3.6vw,1.8rem);background:var(--navy);color:#fff;border-radius:18px;padding:14px 18px;margin:10px 0;text-align:center;text-wrap:balance}
+.formula em{font-style:normal;color:var(--sun)}
+
+/* audio */
+.au{display:inline-grid;place-items:center;vertical-align:middle;width:44px;height:44px;min-width:44px;border-radius:50%;border:none;background:var(--navy);color:#fff;font-size:1.1rem;cursor:pointer;margin-right:10px;line-height:1;padding:0}
+.au:hover{filter:brightness(1.25)}
+.au.on{background:var(--coral)}
+:focus-visible{outline:4px solid var(--sun);outline-offset:2px}
+.btn{font:inherit;font-weight:800;border:none;border-radius:99px;padding:10px 20px;background:var(--sun);color:#1b1f3b;cursor:pointer;font-size:1.05rem}
+.btn[aria-pressed="true"]{background:#fff;box-shadow:inset 0 0 0 3px var(--sun)}
+
+/* fields */
+input[type=text],textarea,select{font:inherit;font-size:1.2rem;font-weight:600;color:var(--ink);background:var(--field);border:3px solid var(--line);border-radius:14px;padding:9px 13px;min-height:52px;max-width:100%}
+input[type=text]{width:100%}
+textarea{width:100%;min-height:96px;display:block;resize:vertical}
+select{min-width:9em}
+input[type=text]:focus,textarea:focus,select:focus{outline:none;border-color:var(--c,var(--sky));box-shadow:0 0 0 4px color-mix(in srgb,var(--c,var(--sky)) 28%,transparent)}
+input.inl{display:inline-block;width:9.5em;margin:4px 6px}
+label.fl{display:block;font-weight:800;font-size:1rem;color:var(--muted);margin-bottom:4px}
+
+/* chips + cards */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 0}
+.chip{display:flex;align-items:center;background:var(--surface);border:2px solid var(--line);border-radius:99px;padding:4px 18px 4px 4px;font-weight:800}
+.chip .au{margin-right:8px;width:38px;height:38px;min-width:38px}
+.chip small{font-weight:600;color:var(--muted);margin-left:8px;font-size:.95rem}
+.pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
+.pc{background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:14px;min-width:0}
+.pc .tag{display:inline-block;font-family:var(--f-head);font-weight:600;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;border-radius:99px;padding:1px 12px;margin-bottom:6px;color:#fff}
+.tag.inf{background:var(--coral)}.tag.for{background:var(--sky)}
+.ex{display:block;margin:12px 0;min-width:0}
+.ex .t{font-weight:800}
+
+/* chart */
+.row3{display:grid;grid-template-columns:76px repeat(3,minmax(0,1fr));gap:12px;align-items:end;padding:14px 0;border-bottom:2px dashed var(--line)}
+.row3:last-child{border-bottom:none}
+.row3 .ic{font-size:3rem;line-height:1;text-align:center;align-self:center}
+.row3 .ex-fill input{background:color-mix(in srgb,var(--mint) 18%,var(--surface));border-color:var(--mint)}
+.badge{display:inline-block;background:var(--sun);color:#1b1f3b;font-weight:800;font-size:.9rem;border-radius:99px;padding:0 10px}
+@media (max-width:700px){.row3{grid-template-columns:64px 1fr}.row3 .ic{grid-row:span 3}}
+
+/* radios */
+.sit{padding:14px 0;border-bottom:2px dashed var(--line);min-width:0}
+.sit:last-child{border-bottom:none}
+.sit h4{margin:0 0 10px;font-size:1.2rem;display:flex;align-items:flex-start;gap:6px}
+.sit .let{display:inline-grid;place-items:center;min-width:34px;height:34px;border-radius:50%;background:var(--c);color:var(--on);font-family:var(--f-head);font-weight:700;margin-top:6px;margin-right:4px}
+.phr{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:8px 0}
+.phr q{font-weight:800;flex:1 1 220px;min-width:0}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.pill{position:relative}
+.pill input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.pill span{display:inline-block;padding:8px 20px;border:3px solid var(--line);border-radius:99px;font-weight:800;background:var(--field);min-height:48px;line-height:1.7}
+.pill input:checked+span{background:var(--c);border-color:var(--c);color:var(--on)}
+.pill input:focus-visible+span{outline:4px solid var(--sun);outline-offset:2px}
+
+/* match */
+.mt{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px}
+.mrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0}
+.mrow .let{display:inline-grid;place-items:center;min-width:36px;height:36px;border-radius:50%;background:var(--c);color:#fff;font-family:var(--f-head);font-weight:700}
+.wl{list-style:none;margin:0;padding:0}
+.wl li{display:flex;align-items:center;margin:10px 0;font-weight:800}
+.wl .let{display:inline-grid;place-items:center;min-width:36px;height:36px;border-radius:50%;background:var(--sun);color:#1b1f3b;font-family:var(--f-head);font-weight:700;margin-right:10px}
+
+/* organizer */
+.org{display:grid;grid-template-columns:1fr 1fr;gap:24px 20px;position:relative}
+.bubble{background:var(--surface);border:3px solid var(--c);border-radius:24px;padding:36px 16px 16px;position:relative;min-width:0}
+.bubble .lbl{position:absolute;top:-20px;left:50%;transform:translateX(-50%);background:var(--sun);color:#1b1f3b;font-family:var(--f-head);font-weight:700;border-radius:99px;padding:4px 22px;white-space:nowrap}
+.bubble input{margin:6px 0}
+.core{grid-column:1/-1;justify-self:center;background:var(--navy);color:#fff;font-family:var(--f-head);font-weight:700;font-size:1.5rem;text-align:center;border-radius:18px;padding:14px 28px;text-wrap:balance}
+@media (max-width:640px){.org{grid-template-columns:1fr}}
+
+/* signs */
+.signs{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
+.sign{background:#fff;color:#111;border:4px solid #111;border-radius:16px;padding:10px;text-align:center;font-weight:800;font-size:.9rem;line-height:1.2;min-width:0}
+.sign .g{font-size:2.6rem;line-height:1.1;display:block;position:relative}
+.sign .no::after{content:"\1F6AB";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:3.4rem;opacity:.9}
+.sign .no{display:inline-block;position:relative}
+.rs{padding:12px 0;border-bottom:2px dashed var(--line);min-width:0}
+.rs:last-child{border-bottom:none}
+.rs .q{display:flex;align-items:flex-start;gap:6px;margin-bottom:8px}
+.rs .let{display:inline-grid;place-items:center;min-width:34px;height:34px;border-radius:50%;background:var(--c);color:var(--on);font-family:var(--f-head);font-weight:700;margin-top:5px;margin-right:4px}
+.bh{padding:12px 0;border-bottom:2px dashed var(--line);display:flex;flex-wrap:wrap;align-items:center;gap:4px 2px}
+.bh:last-child{border-bottom:none}
+.bh .let{display:inline-grid;place-items:center;min-width:34px;height:34px;border-radius:50%;background:var(--c);color:var(--on);font-family:var(--f-head);font-weight:700;margin-right:6px}
+
+/* homework numbered list */
+.ex .n{display:inline-grid;place-items:center;min-width:34px;height:34px;border-radius:50%;background:var(--coral);color:#fff;font-family:var(--f-head);font-weight:700;margin-right:8px}
+.opt{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.opt .pill span{display:block;border-radius:18px;line-height:1.35;padding:10px 18px}
+.end{text-align:center;margin:34px 0 0;font-family:var(--f-head);font-size:1.6rem}
+@media (max-width:480px){body{font-size:1.15rem}.hero{border-radius:26px}.sheet{border-radius:24px}}
+</style>
+
+<div class="wrap">
+<header class="hero">
+  <span class="kick">Unit 3 · Clase online · Nivel básico</span>
+  <h1>The Wonderful World of Music</h1>
+  <p>Hoy vas a practicar instrumentos, músicos y acciones, cómo hablar formal e informal, cómo expresar sentimientos y cómo usar <b>I wish</b>.</p>
+  <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="howto">Todo lo que está en inglés tiene un botón <button class="au" type="button" style="margin:0 4px" data-say="Hello! Click this button to listen." aria-label="Escuchar un ejemplo">🔊</button> para escucharlo. Las explicaciones están en español.</div>
+  <div class="tools">
+    <button class="btn" id="slow" type="button" aria-pressed="false">🐢 Voz lenta: apagada</button>
+    <span id="novoice" hidden class="es" style="color:#fff">Tu navegador no tiene voz en inglés disponible. Prueba con Chrome, Edge o Safari.</span>
+  </div>
+</header>
+
+<nav aria-label="Secciones"><ul>
+  <li><a href="#h1">1 · Instrumentos</a></li>
+  <li><a href="#h2">2 · Formal e informal</a></li>
+  <li><a href="#h3">3 · Sentimientos</a></li>
+  <li><a href="#h4">4 · Mapa de ideas</a></li>
+  <li><a href="#h5">5 · Letreros y conducta</a></li>
+  <li><a href="#h6">Tarea</a></li>
+</ul></nav>
+
+<!-- ========== HOJA 1 ========== -->
+<section class="sheet c1" id="h1">
+  <div class="sh"><span class="tab">Hoja 1</span><h2>Instruments, Musicians, Actions</h2><span class="es">Instrumentos, músicos y acciones</span></div>
+  <div class="sb">
+    <div class="lesson">
+      <h3>Cómo se dice la persona que toca</h3>
+      <p>Cada instrumento tiene un <b>músico</b> (la persona) y una <b>acción</b> (lo que hace). Para nombrar a la persona agregamos al final de la palabra <b>-er</b> o <b>-ist</b>. Para la acción agregamos <b>-ing</b>.</p>
+      <div class="formula">sing <em>+ er</em> = singer &nbsp;·&nbsp; sing <em>+ ing</em> = singing</div>
+      <p><b>Ejemplos con otras palabras:</b></p>
+      <div class="ex"><span class="sp t" data-say="cello, cellist, playing">cello → cellist → playing</span><span class="es">violonchelo → violonchelista → tocando</span></div>
+      <div class="ex"><span class="sp t" data-say="harp, harpist, plucking">harp → harpist → plucking</span><span class="es">arpa → arpista → puntear (tocar las cuerdas con los dedos)</span></div>
+      <div class="ex"><span class="sp t" data-say="dance, dancer, dancing">dance → dancer → dancing</span><span class="es">Si la palabra ya termina en -e, solo agregas -r. Para la acción quitas la -e y agregas -ing.</span></div>
+      <p>⚠️ Algunos instrumentos cambian un poco al formar la persona. Si tienes dudas, <b>usa un diccionario</b>, como pide la actividad.</p>
+    </div>
+
+    <div class="lesson">
+      <h3>Las acciones del banco de palabras</h3>
+      <p>Estas seis palabras describen <b>cómo se toca</b> un instrumento. Escúchalas y aprende qué significan.</p>
+      <div class="chips" id="acts"></div>
+    </div>
+
+    <div class="task">
+      <h3>Actividad 3 · Completa la tabla</h3>
+      <p class="instr sp" data-say="Use the words and a dictionary to complete the chart.">Use the words and a dictionary to complete the chart.<span class="es">Usa las palabras y un diccionario para completar la tabla. Mira el dibujo y escribe el nombre del instrumento, la persona que lo toca y la acción.</span></p>
+      <p class="sp" data-say="blowing, bowing, hitting, plucking, shaking, singing"><b>Word bank:</b> blowing · bowing · hitting · plucking · shaking · singing</p>
+      <div id="chart"></div>
+    </div>
+
+    <div class="task">
+      <h3>Actividad 4 · Escribe en tu cuaderno</h3>
+      <p class="instr sp" data-say="In your notebook, write a description of the last musical performance you saw. Describe the kind of music, the musicians, the performance, what you liked or didn't like about it, why you decided to watch or listen to it. Give your friends recommendations.">In your notebook, write a description of the last musical performance you saw.<span class="es">Escribe la descripción del último espectáculo musical que viste. Responde cada pregunta en su caja. Puedes escribir en inglés con frases cortas.</span></p>
+      <div id="perf"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== HOJA 2 ========== -->
+<section class="sheet c2" id="h2">
+  <div class="sh"><span class="tab">Hoja 2</span><h2>Check the correct register</h2><span class="es">Elige el registro correcto: formal o informal</span></div>
+  <div class="sb">
+    <div class="lesson">
+      <h3>¿Qué es el “registro”?</h3>
+      <p>Es la <b>forma de hablar</b> según la situación. Con amigos hablamos <b>informal</b> (relajado). En una oficina, con un profesor o un desconocido hablamos <b>formal</b> (educado y cuidadoso).</p>
+      <div class="pairs">
+        <div class="pc"><span class="tag inf">Informal</span>
+          <ul>
+            <li>Usa jerga y palabras muy coloquiales.</li>
+            <li>Usa apodos cariñosos o confianzudos.</li>
+            <li>Exagera con palabras fuertes y exclamaciones.</li>
+            <li>Frases cortas y contracciones (I'm, it's).</li>
+          </ul></div>
+        <div class="pc"><span class="tag for">Formal</span>
+          <ul>
+            <li>Usa saludos educados según la hora del día.</li>
+            <li>Dice las cosas con suavidad y cortesía.</li>
+            <li>Evita jerga y palabras fuertes.</li>
+            <li>Usa palabras como <i>quite</i>, <i>would</i>, <i>could</i>, <i>please</i>.</li>
+          </ul></div>
+      </div>
+      <p><b>Ejemplos con otras frases:</b></p>
+      <div class="pairs">
+        <div class="pc"><span class="tag inf">Informal</span>
+          <span class="ex"><span class="sp t" data-say="Hey, buddy! What's up?">Hey, buddy! What's up?</span><span class="es">¡Ey, amigo! ¿Qué onda?</span></span>
+          <span class="ex"><span class="sp t" data-say="That show was awesome!">That show was awesome!</span><span class="es">¡Ese espectáculo estuvo genial!</span></span>
+          <span class="ex"><span class="sp t" data-say="Shut the door!">Shut the door!</span><span class="es">¡Cierra la puerta!</span></span></div>
+        <div class="pc"><span class="tag for">Formal</span>
+          <span class="ex"><span class="sp t" data-say="Good evening, sir. How may I help you?">Good evening, sir. How may I help you?</span><span class="es">Buenas noches, señor. ¿En qué puedo ayudarle?</span></span>
+          <span class="ex"><span class="sp t" data-say="The show was excellent.">The show was excellent.</span><span class="es">El espectáculo fue excelente.</span></span>
+          <span class="ex"><span class="sp t" data-say="Could you close the door, please?">Could you close the door, please?</span><span class="es">¿Podría cerrar la puerta, por favor?</span></span></div>
+      </div>
+    </div>
+
+    <div class="task">
+      <h3>Actividad 2 · Marca el registro</h3>
+      <p class="instr sp" data-say="Check the correct register for the different situations.">Check the correct register for the different situations.<span class="es">En cada situación hay dos frases. Marca cuál es <b>Formal</b> y cuál es <b>Informal</b>.</span></p>
+      <div id="reg"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== HOJA 3 ========== -->
+<section class="sheet c3" id="h3">
+  <div class="sh"><span class="tab">Hoja 3</span><h2>Match the synonyms</h2><span class="es">Une los sinónimos y escribe ejemplos sobre ti</span></div>
+  <div class="sb">
+    <div class="lesson">
+      <h3>Sinónimos y expresiones de sentimientos</h3>
+      <p>Los <b>sinónimos</b> son palabras o expresiones que significan casi lo mismo. En inglés hay muchas <b>expresiones</b> (modismos) para decir cómo nos sentimos. No se traducen palabra por palabra.</p>
+      <div class="pairs">
+        <div class="pc"><span class="ex"><span class="sp t" data-say="happy = glad">happy = glad</span><span class="es">feliz = contento</span></span>
+          <span class="ex"><span class="sp t" data-say="over the moon = very, very happy">over the moon = very, very happy</span><span class="es">“sobre la luna” = muy, muy feliz</span></span></div>
+        <div class="pc"><span class="ex"><span class="sp t" data-say="feeling blue = sad">feeling blue = sad</span><span class="es">“sentirse azul” = triste</span></span>
+          <span class="ex"><span class="sp t" data-say="on edge = nervous">on edge = nervous</span><span class="es">“al borde” = nervioso</span></span></div>
+      </div>
+      <p><b>Cómo armar tus frases:</b></p>
+      <div class="ex"><span class="sp t" data-say="I feel worn out after the concert.">I feel worn out after the concert.</span><span class="es">Me siento agotado después del concierto. (<i>I feel</i> + sentimiento)</span></div>
+      <div class="ex"><span class="sp t" data-say="I'm on edge about my exam.">I'm on edge about my exam.</span><span class="es">Estoy nervioso por mi examen. (<i>I'm</i> + expresión + <i>about</i> + tema)</span></div>
+      <p>📖 Si no conoces una expresión de la actividad, búscala en un diccionario antes de responder.</p>
+    </div>
+
+    <div class="task">
+      <h3>Actividad 4 · Une los sinónimos</h3>
+      <p class="instr sp" data-say="Match the synonyms and write three examples about yourself using some of the expressions in the first column.">Match the synonyms and write three examples about yourself using some of the expressions in the first column.<span class="es">Une los sinónimos y escribe tres ejemplos sobre ti usando algunas expresiones de la primera columna.</span></p>
+      <div class="mt">
+        <div id="syn"></div>
+        <div>
+          <p class="sp" data-say="Second column."><b>Second column</b> <span class="es" style="display:inline">(segunda columna)</span></p>
+          <ul class="wl" id="synr"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <h3>Escribe tres ejemplos sobre ti</h3>
+      <p class="es" style="font-size:1.1rem;margin-bottom:10px">Usa expresiones de la primera columna: down, fed up with, stressed out, walking on air.</p>
+      <div id="ownex"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== HOJA 4 ========== -->
+<section class="sheet c4" id="h4">
+  <div class="sh"><span class="tab">Hoja 4</span><h2>Organize Your Learning</h2><span class="es">Organiza lo que aprendiste</span></div>
+  <div class="sb">
+    <div class="lesson">
+      <h3>Tipos de música</h3>
+      <p>Escucha estos nombres. Después elige los que quieras para tu mapa de ideas.</p>
+      <div class="chips" id="genres"></div>
+    </div>
+    <div class="task">
+      <h3>Completa el mapa de ideas</h3>
+      <p class="instr sp" data-say="Organize your learning. The wonderful world of music. Write types of music and instruments.">Organize your learning: The Wonderful World of Music.<span class="es">Escribe 4 tipos de música y 4 instrumentos. Puedes usar lo que aprendiste hoy y en tus clases anteriores.</span></p>
+      <div class="org">
+        <div class="bubble c4"><span class="lbl">Types of Music</span><div id="org1"></div></div>
+        <div class="bubble c4"><span class="lbl">Instruments</span><div id="org2"></div></div>
+        <div class="core">The Wonderful World of Music</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== HOJA 5 ========== -->
+<section class="sheet c5" id="h5">
+  <div class="sh"><span class="tab">Hoja 5</span><h2>Signs and Social Behavior</h2><span class="es">Letreros y conducta social</span></div>
+  <div class="sb">
+    <div class="lesson">
+      <h3>Reglas con must y mustn’t</h3>
+      <p><b>You must</b> + verbo = es <b>obligatorio</b> hacerlo. <b>You mustn’t</b> + verbo = está <b>prohibido</b>. Para dar la razón usamos <b>because</b> (porque).</p>
+      <div class="formula">You <em>must</em> / <em>mustn’t</em> + verbo + <em>because</em> + razón</div>
+      <div class="ex"><span class="sp t" data-say="You must wear a helmet because it protects your head.">You must wear a helmet because it protects your head.</span><span class="es">Debes usar casco porque protege tu cabeza.</span></div>
+      <div class="ex"><span class="sp t" data-say="You mustn't run near the pool because the floor is wet.">You mustn’t run near the pool because the floor is wet.</span><span class="es">No debes correr cerca de la piscina porque el piso está mojado.</span></div>
+    </div>
+
+    <div class="task">
+      <h3>Lee los letreros y escribe una razón</h3>
+      <p class="instr sp" data-say="Read the signs and write a reason for the instruction.">Read the signs and write a reason for the instruction.<span class="es">Lee los letreros y escribe una razón para cada instrucción. Empieza con lo que ya está escrito.</span></p>
+      <div class="signs" aria-label="Letreros">
+        <div class="sign"><span class="g">📵</span>NOTICE<br>TURN CELL PHONES OFF IN THIS AREA</div>
+        <div class="sign"><span class="g">⬅️</span>Line starts here</div>
+        <div class="sign"><span class="g"><span class="no">📷</span></span>Flash photography</div>
+        <div class="sign"><span class="g"><span class="no">🎥</span></span>Video recordings</div>
+        <div class="sign"><span class="g"><span class="no">🍾</span></span>Glass</div>
+        <div class="sign"><span class="g"><span class="no">🍔</span></span>Food</div>
+      </div>
+      <div id="sig" style="margin-top:12px"></div>
+    </div>
+
+    <div class="lesson">
+      <h3>Conducta social: palabras útiles</h3>
+      <div class="chips" id="soc"></div>
+      <p style="margin-top:14px"><b>If</b> = si (cuando algo se cumple). <b>Unless</b> = a menos que (si algo NO se cumple).</p>
+      <div class="ex"><span class="sp t" data-say="It's polite to say thank you.">It’s polite to say thank you.</span><span class="es">Es educado decir gracias. (<i>It’s</i> + adjetivo + <i>to</i> + verbo)</span></div>
+      <div class="ex"><span class="sp t" data-say="It's rude to talk during a movie unless it's an emergency.">It’s rude to talk during a movie unless it’s an emergency.</span><span class="es">Es grosero hablar durante una película, a menos que sea una emergencia.</span></div>
+      <div class="ex"><span class="sp t" data-say="It's acceptable to wear a cap if you are in the park.">It’s acceptable to wear a cap if you are in the park.</span><span class="es">Es aceptable usar gorra si estás en el parque.</span></div>
+    </div>
+
+    <div class="task">
+      <h3>Describe la conducta social</h3>
+      <p class="instr sp" data-say="Use the lists and your own ideas to complete the sentences describing social behavior.">Use the lists and your own ideas to complete the sentences describing social behavior.<span class="es">Usa las listas y tus propias ideas. Escribe un adjetivo, una acción, y elige <b>if</b> o <b>unless</b>.</span></p>
+      <p class="sp" data-say="acceptable, antisocial, polite, rude. If, unless."><b>acceptable · antisocial · polite · rude</b> &nbsp;|&nbsp; <b>if · unless</b></p>
+      <div id="beh"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TAREA ========== -->
+<section class="sheet c6" id="h6">
+  <div class="sh"><span class="tab">Tarea</span><h2>Homework: Review Time</h2><span class="es">Repaso de las clases anteriores: cortesía, I wish, preguntas indirectas y sufijos</span></div>
+  <div class="sb">
+    <div class="lesson">
+      <h3>Mini recordatorio</h3>
+      <p><b>Would / Could</b> sirven para pedir cosas con cortesía. <b>I wish … would</b> sirve para decir que algo te molesta de otra persona.</p>
+      <div class="formula">I wish + persona + <em>would (not)</em> + verbo</div>
+      <div class="ex"><span class="sp t" data-say="Could you pass me the program, please?">Could you pass me the program, please?</span><span class="es">¿Podrías pasarme el programa, por favor?</span></div>
+      <div class="ex"><span class="sp t" data-say="I wish she would not speak so loud.">I wish she would not speak so loud.</span><span class="es">Ojalá ella no hablara tan fuerte. (me molesta)</span></div>
+      <div class="ex"><span class="sp t" data-say="Could you tell me what time the show starts?">Could you tell me what time the show starts?</span><span class="es">Pregunta indirecta: ¿podrías decirme a qué hora empieza el show? (orden normal de oración, sin do/does)</span></div>
+    </div>
+    <div id="hw"></div>
+    <p class="end">🎶 See you in the next class!</p>
+  </div>
+</section>
+</div>
+
+<script>
+(function(){
+  /* ---------- helpers ---------- */
+  var slow=false,voice=null,current=null;
+  var synth=null;try{synth=window.speechSynthesis||null}catch(e){}
+  function pickVoice(){
+    try{var v=synth.getVoices();
+      voice=v.filter(function(x){return /^en[-_]US/i.test(x.lang)})[0]||v.filter(function(x){return /^en/i.test(x.lang)})[0]||null;
+      var nv=document.getElementById('novoice');if(nv&&v.length)nv.hidden=!!voice;
+    }catch(e){}
+  }
+  if(synth){pickVoice();try{synth.onvoiceschanged=pickVoice}catch(e){}}else{document.getElementById('novoice').hidden=false}
+  function say(t,btn){
+    if(!synth)return;
+    try{
+      synth.cancel();
+      if(current){current.classList.remove('on')}
+      var u=new SpeechSynthesisUtterance(t);u.lang='en-US';if(voice)u.voice=voice;u.rate=slow?.6:.9;
+      if(btn){current=btn;btn.classList.add('on');u.onend=u.onerror=function(){btn.classList.remove('on')}}
+      synth.speak(u);
+    }catch(e){}
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-say]');
+    if(b){say(b.getAttribute('data-say'),b)}
+  });
+  var slowBtn=document.getElementById('slow');
+  slowBtn.addEventListener('click',function(){slow=!slow;slowBtn.setAttribute('aria-pressed',String(slow));slowBtn.textContent=slow?'🐢 Voz lenta: encendida':'🐢 Voz lenta: apagada'});
+
+  function el(tag,cls,html){var x=document.createElement(tag);if(cls)x.className=cls;if(html!=null)x.innerHTML=html;return x}
+  function aub(text){var b=el('button','au','🔊');b.type='button';b.setAttribute('aria-label','Escuchar');b.setAttribute('data-say',text);return b}
+  function inp(id,label,ph){var w=el('div');var l=el('label','fl',label);l.setAttribute('for',id);var i=document.createElement('input');i.type='text';i.id=id;i.autocomplete='off';i.spellcheck=false;i.setAttribute('autocapitalize','off');if(ph)i.placeholder=ph;w.appendChild(l);w.appendChild(i);return w}
+  function ta(id,label,ph){var w=el('div');var l=el('label','fl',label);l.setAttribute('for',id);var t=document.createElement('textarea');t.id=id;if(ph)t.placeholder=ph;w.appendChild(l);w.appendChild(t);return w}
+  function $(id){return document.getElementById(id)}
+  function radios(name,opts,cls){
+    var w=el('div',cls||'opts');w.setAttribute('role','radiogroup');
+    opts.forEach(function(o,i){
+      var l=el('label','pill');var r=document.createElement('input');r.type='radio';r.name=name;r.value=o.v;r.id=name+'-'+i;
+      var s=el('span','');s.textContent=o.t;l.appendChild(r);l.appendChild(s);w.appendChild(l);
+    });
+    return w;
+  }
+  function chips(target,items){
+    items.forEach(function(d){var c=el('div','chip');c.appendChild(aub(d[0]));c.appendChild(document.createTextNode(d[0]));if(d[1]){c.appendChild(el('small','',d[1]))}$(target).appendChild(c)});
+  }
+
+  /* ---------- hoja 1 ---------- */
+  chips('acts',[['blowing','soplar'],['bowing','tocar con arco'],['hitting','golpear'],['plucking','puntear'],['shaking','agitar, sacudir'],['singing','cantar']]);
+
+  var chart=$('chart');
+  (function(){
+    var ex=el('div','row3 ex-fill');
+    ex.appendChild(el('div','ic','🎤'));
+    ['Instrument|voice','Musician|singer','Action|singing'].forEach(function(s,i){
+      var p=s.split('|');var w=el('div');var l=el('label','fl',p[0]);l.setAttribute('for','ex-'+i);var x=document.createElement('input');x.type='text';x.id='ex-'+i;x.value=p[1];x.readOnly=true;w.appendChild(l);w.appendChild(x);ex.appendChild(w);
+    });
+    var wrap=el('div');wrap.appendChild(el('span','badge','Example · Ejemplo'));
+    chart.appendChild(wrap);
+    var sa=el('p','');sa.appendChild(aub('voice, singer, singing'));sa.appendChild(document.createTextNode('Escucha el ejemplo'));
+    chart.appendChild(sa);chart.appendChild(ex);
+    ['🎺','🎹','🎻','🥁','🎸','🎷','🪈'].forEach(function(ic,n){
+      var r=el('div','row3');r.appendChild(el('div','ic',ic));
+      r.lastChild.setAttribute('role','img');r.lastChild.setAttribute('aria-label','Dibujo del instrumento '+(n+1));
+      r.appendChild(inp('ch-i-'+n,'Instrument'));
+      r.appendChild(inp('ch-m-'+n,'Musician'));
+      r.appendChild(inp('ch-a-'+n,'Action'));
+      chart.appendChild(r);
+    });
+  })();
+
+  var perf=$('perf');
+  [['p1','What kind of music was it?','¿Qué tipo de música era?','Example: It was pop music.'],
+   ['p2','Who were the musicians?','¿Quiénes eran los músicos?',''],
+   ['p3','How was the performance?','¿Cómo fue la presentación?',''],
+   ['p4','What did you like or not like?','¿Qué te gustó o no te gustó?',''],
+   ['p5','Why did you decide to watch or listen to it?','¿Por qué decidiste verlo o escucharlo?',''],
+   ['p6','What do you recommend to your friends?','¿Qué recomiendas a tus amigos?','']
+  ].forEach(function(d){
+    var blk=el('div','ex');var q=el('p','','');q.appendChild(aub(d[1]));q.appendChild(el('b','',d[1]));q.appendChild(el('span','es',d[2]));blk.appendChild(q);
+    var t=document.createElement('textarea');t.id=d[0];t.setAttribute('aria-label',d[1]);if(d[3])t.placeholder=d[3];blk.appendChild(t);perf.appendChild(blk);
+  });
+
+  /* ---------- hoja 2 ---------- */
+  var sits=[
+    ['A','You are buying tickets for a concert from the ticket office.','Estás comprando entradas para un concierto en la boletería.',['Hi, honey!','Good afternoon.']],
+    ['B','You tell your friends you are going home because you are very tired.','Les dices a tus amigos que te vas a casa porque estás muy cansado.',["I'm beat!","I'm feeling rather tired."]],
+    ['C','Your teacher asks you if you enjoyed the school concert. You say…','Tu profesor te pregunta si disfrutaste el concierto del colegio. Tú dices…',['It was a real drag!',"It wasn't as good as I hoped it would be."]],
+    ['D','You are rehearsing in an old stadium. You say to the manager…','Estás ensayando en un estadio viejo. Le dices al gerente…',['This place is an absolute dump!','The stadium needs some repairs.']]
+  ];
+  var reg=$('reg');
+  sits.forEach(function(s,i){
+    var d=el('div','sit');var h=el('h4','');h.appendChild(el('span','let',s[0]));h.appendChild(aub(s[1]));
+    var tx=el('span','',s[1]+'<span class="es">'+s[2]+'</span>');h.appendChild(tx);d.appendChild(h);
+    s[3].forEach(function(p,j){
+      var r=el('div','phr');r.appendChild(aub(p));var q=el('q','');q.textContent=p;r.appendChild(q);
+      r.appendChild(radios('reg-'+i+'-'+j,[{v:'formal',t:'Formal'},{v:'informal',t:'Informal'}]));
+      d.appendChild(r);
+    });
+    reg.appendChild(d);
+  });
+
+  /* ---------- hoja 3 ---------- */
+  var syn=$('syn');
+  var left=['down','fed up with','stressed out','walking on air'],L=['A','B','C','D'];
+  var rightw=['anxious','depressed','ecstatic','tired of'],R=['a','b','c','d'];
+  left.forEach(function(w,i){
+    var r=el('div','mrow');r.appendChild(el('span','let',L[i]));r.appendChild(aub(w));
+    var t=el('b','',w);r.appendChild(t);
+    var s=document.createElement('select');s.id='syn-'+i;s.setAttribute('aria-label','Sinónimo de '+w);
+    var o0=document.createElement('option');o0.value='';o0.textContent='Elige…';s.appendChild(o0);
+    R.forEach(function(x,k){var o=document.createElement('option');o.value=x;o.textContent=x+' · '+rightw[k];s.appendChild(o)});
+    r.appendChild(s);syn.appendChild(r);
+  });
+  rightw.forEach(function(w,i){var li=el('li','');li.appendChild(el('span','let',R[i]));li.appendChild(aub(w));li.appendChild(document.createTextNode(w));$('synr').appendChild(li)});
+  var ownex=$('ownex');
+  [1,2,3].forEach(function(n){
+    var blk=el('div','ex');var p=el('p','');p.appendChild(el('span','n',String(n)));p.appendChild(document.createTextNode('Example '+n));blk.appendChild(p);
+    var t=document.createElement('textarea');t.id='own-'+n;t.setAttribute('aria-label','Ejemplo '+n+' sobre mí');t.placeholder='I feel ...';t.style.minHeight='80px';blk.appendChild(t);ownex.appendChild(blk);
+  });
+
+  /* ---------- hoja 4 ---------- */
+  chips('genres',[['pop'],['rock'],['jazz'],['classical'],['reggae'],['country'],['hip hop'],['folk'],['blues'],['metal'],['salsa'],['electronic']]);
+  [1,2,3,4].forEach(function(n){
+    var a=inp('o1-'+n,'Type of music '+n);var b=inp('o2-'+n,'Instrument '+n);
+    a.querySelector('label').className='fl';b.querySelector('label').className='fl';
+    $('org1').appendChild(a);$('org2').appendChild(b);
+  });
+
+  /* ---------- hoja 5 ---------- */
+  var sg=$('sig');
+  [['A','Cell phones:','You must switch off your cell phone because…','must','Cell phones: You must switch off your cell phone because'],
+   ['B','Line:','You must','must','Line: You must'],
+   ['C','Flash photography:',"You mustn't",'mustn','Flash photography: You mustn\'t'],
+   ['D','Video recordings:','','','Video recordings:'],
+   ['E','Glass:','','','Glass:'],
+   ['F','Food:','','','Food:']
+  ].forEach(function(d,i){
+    var r=el('div','rs');var q=el('div','q');q.appendChild(el('span','let',d[0]));q.appendChild(aub(d[4]));
+    var t=el('span','','<b>'+d[1]+'</b> '+(d[2]?d[2]:'')+(i>=3?'<span class="es">Escribe una regla y su razón.</span>':'<span class="es">Completa la idea con una razón.</span>'));q.appendChild(t);r.appendChild(q);
+    var x=document.createElement('textarea');x.id='sg-'+i;x.setAttribute('aria-label','Respuesta '+d[0]);x.style.minHeight='72px';r.appendChild(x);sg.appendChild(r);
+  });
+  chips('soc',[['acceptable','aceptable'],['antisocial','antisocial'],['polite','educado'],['rude','grosero'],['if','si'],['unless','a menos que']]);
+  var beh=$('beh'),ends=['outdoors','outdoors','guest','guest'],endt=["it's outdoors.","it's outdoors.",'you are a guest.','you are a guest.'];
+  ['A','B','C','D'].forEach(function(L2,i){
+    var d=el('div','bh');d.appendChild(el('span','let',L2));d.appendChild(aub("It's blank to blank blank "+endt[i]));
+    d.appendChild(document.createTextNode("It's"));
+    var a=document.createElement('input');a.type='text';a.className='inl';a.id='bh-a-'+i;a.setAttribute('aria-label','Adjetivo '+L2);a.autocomplete='off';a.spellcheck=false;d.appendChild(a);
+    d.appendChild(document.createTextNode('to'));
+    var b=document.createElement('input');b.type='text';b.className='inl';b.id='bh-v-'+i;b.setAttribute('aria-label','Acción '+L2);b.autocomplete='off';b.spellcheck=false;d.appendChild(b);
+    var s=document.createElement('select');s.id='bh-c-'+i;s.setAttribute('aria-label','if o unless '+L2);s.style.margin='4px 6px';
+    [['','if / unless'],['if','if'],['unless','unless']].forEach(function(o){var op=document.createElement('option');op.value=o[0];op.textContent=o[1];s.appendChild(op)});
+    d.appendChild(s);d.appendChild(document.createTextNode(endt[i]));
+    beh.appendChild(d);
+  });
+
+  /* ---------- tarea ---------- */
+  var hw=$('hw');
+  function part(title,es,instrEn){
+    var t=el('div','task');var h=el('h3','',title);t.appendChild(h);
+    var p=el('p','instr');p.appendChild(aub(instrEn));p.appendChild(document.createTextNode(instrEn));p.appendChild(el('span','es',es));t.appendChild(p);hw.appendChild(t);return t;
+  }
+  var n=0;
+  /* 1 polite */
+  var t1=part('Parte 1 · Elige la opción más educada','Marca la frase más cortés.','Choose the more polite sentence.');
+  [['Move your bag!','Would you mind moving your bag, please?',1],
+   ['Could you pass me the program, please?','Give me the program!',0],
+   ['Would you please be quiet?','Be quiet!',0]].forEach(function(d,i){
+    n++;var b=el('div','ex');var p=el('p','');p.appendChild(el('span','n',String(n)));p.appendChild(document.createTextNode('Which one is more polite?'));b.appendChild(p);
+    var w=el('div','opt');
+    [d[0],d[1]].forEach(function(o,k){
+      var r=el('div','');r.style.display='flex';r.style.alignItems='center';r.appendChild(aub(o));
+      var l=el('label','pill');l.style.flex='1';var ri=document.createElement('input');ri.type='radio';ri.name='hw1-'+i;ri.id='hw1-'+i+'-'+k;ri.value=String(k);
+      var s=el('span','');s.textContent=o;l.appendChild(ri);l.appendChild(s);r.appendChild(l);w.appendChild(r);
+    });
+    b.appendChild(w);t1.appendChild(b);
+  });
+  /* 2 I wish */
+  var t2=part('Parte 2 · I wish … would','Escribe would o would not + el verbo entre paréntesis. Fíjate en la pista.','Complete the sentences with would or would not and the verb in brackets.');
+  [['I wish the people behind me',' talking. (stop)','Quieres que paren.','I wish the people behind me blank talking.'],
+   ['I wish my neighbor',' the drums at night. (play)','Quieres que no toque.','I wish my neighbor blank the drums at night.'],
+   ['I wish he',' his phone during the concert. (use)','Quieres que no lo use.','I wish he blank his phone during the concert.'],
+   ['I wish she',' the door. (close)','Quieres que la cierre.','I wish she blank the door.']
+  ].forEach(function(d,i){
+    n++;var b=el('div','ex');var p=el('p','');p.appendChild(el('span','n',String(n)));p.appendChild(aub(d[3]));p.appendChild(document.createTextNode(d[0]+' '));
+    var x=document.createElement('input');x.type='text';x.className='inl';x.id='hw2-'+i;x.setAttribute('aria-label','Respuesta '+n);x.autocomplete='off';x.spellcheck=false;p.appendChild(x);p.appendChild(document.createTextNode(d[1]));p.appendChild(el('span','es','💡 '+d[2]));b.appendChild(p);t2.appendChild(b);
+  });
+  /* 3 indirect */
+  var t3=part('Parte 3 · Preguntas indirectas','Completa la pregunta indirecta. Recuerda: orden normal, sin do/does.','Change the direct question into an indirect question.');
+  [['What time does the concert start?','Could you tell me'],
+   ['Where is the stage?','Do you know'],
+   ['Is the band famous?','I wonder']
+  ].forEach(function(d,i){
+    n++;var b=el('div','ex');var p=el('p','');p.appendChild(el('span','n',String(n)));p.appendChild(aub('Direct: '+d[0]+' Indirect: '+d[1]));p.appendChild(document.createTextNode('Direct: “'+d[0]+'”'));p.appendChild(el('span','es','Empieza con: '+d[1]+' …'));b.appendChild(p);
+    var x=document.createElement('input');x.type='text';x.id='hw3-'+i;x.setAttribute('aria-label','Respuesta '+n);x.placeholder=d[1]+' ...';x.autocomplete='off';x.spellcheck=false;b.appendChild(x);t3.appendChild(b);
+  });
+  /* 4 suffix */
+  var t4=part('Parte 4 · Sufijos','Escribe la persona que hace la acción.','Write the person who does the action.');
+  [['dance','la persona que baila'],['compose','la persona que compone música'],['paint','la persona que pinta']].forEach(function(d,i){
+    n++;var b=el('div','ex');var p=el('p','');p.appendChild(el('span','n',String(n)));p.appendChild(aub(d[0]));p.appendChild(el('b','',d[0]));p.appendChild(document.createTextNode(' → '));
+    var x=document.createElement('input');x.type='text';x.className='inl';x.id='hw4-'+i;x.setAttribute('aria-label','Respuesta '+n);x.autocomplete='off';x.spellcheck=false;p.appendChild(x);p.appendChild(el('span','es','💡 '+d[1]));b.appendChild(p);t4.appendChild(b);
+  });
+  /* 5 writing */
+  var t5=part('Parte 5 · Escribe tus propias oraciones','Escribe 3 oraciones con I wish … would (not) sobre algo que te molesta en un concierto.','Write three sentences with I wish and would about something that annoys you at a concert.');
+  n++;var b5=el('div','ex');var p5=el('p','');p5.appendChild(el('span','n',String(n)));p5.appendChild(document.createTextNode('My sentences'));b5.appendChild(p5);
+  var x5=document.createElement('textarea');x5.id='hw5';x5.setAttribute('aria-label','Mis tres oraciones con I wish');x5.placeholder='I wish ...';x5.style.minHeight='140px';b5.appendChild(x5);t5.appendChild(b5);
+
+  /* ---------- auto audio for .sp ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('.sp'),function(node){
+    var txt=node.getAttribute('data-say')||node.textContent.replace(/\s+/g,' ').trim();
+    var b=aub(txt);node.insertBefore(b,node.firstChild);
+  });
+})();
+</script>
